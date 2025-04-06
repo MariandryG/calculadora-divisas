@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/x-icon" href="./descarga.ico">
+    <title>Calculadora de divisas</title>
+</head>
+<body> 
+    <div class="contenedor">
+        <h1 id="ui-title">Calculadora de divisas</h1>
+        <div class="ui-contenido flex" >
+            <h2>datos de entrada</h2>
+            <form id="calculadora" action="#" method="post">
+                <input type="number" class="control" name="bcv" id="bcv"  placeholder="Tasa BCV">
+                <input type="number" class="control" name="paralelo" id="paralelo"  placeholder="Tasa paralelo">
+                <input type="number"  class="control" name="monto" id="monto"   placeholder="Monto a calcular">
+                <div class="eleccion">
+                    <label id="dolar" name ='radio'>Base $</label> <input type="radio">
+                    <label id="bolivar" name ='radio'>Base BS</label><input type="radio">
+                </div>
+                </div>
+                </div>
+                <div class="envio">
+                    <label type ='submit'>calcular</label><button type="submit" value="calcular" placeholder ='calcular' id="calcular"></button>
+                    </div>
+                        <div class="reseteo">
+                        <input type="reset" value="RESETEAR" id="resetear">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+    <div class="resultados" id="resultados">
+        <h2 id="ui-title">Resultados</h2>
+    </div>
+</div>
+</div>
+<script src="./codigo.js"></script>
+</body>
+</html>

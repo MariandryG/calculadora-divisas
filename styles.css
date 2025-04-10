@@ -22,9 +22,9 @@ align-items: center;
     border-radius: 20px;
     border-color: black;
     background: red ;
-    box-shadow: 0px 10px 15px -3px (0, 0, 0, 0.197)
+    box-shadow: 0px 10px 15px -3px (0, 0, 0, 0.197);
     padding: 20px;
-    margin: auto:;
+    margin: auto;
     align-items: center;
     border-style: solid;
     
@@ -73,7 +73,7 @@ margin:auto;}
 
 }
 
-.eleccion {;
+.eleccion {
     margin-bottom: 30px;
     text-align: center;
     font-size: 20px;
@@ -140,7 +140,7 @@ label {width: 70%;
     border-radius: 20px;
     border-color: black;
     background: #2271b3 ;
-    box-shadow: 0px 10px 15px -3px (0, 0, 0, 0.197)
+    box-shadow: 0px 10px 15px -3px (0, 0, 0, 0.197);
     padding: 20px;
     margin: auto;
     align-items: center;

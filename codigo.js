@@ -3,21 +3,14 @@ const resultado3 = document.querySelector('#resultado');
 const buttons = document.querySelector('#envio'); 
 
 
+
 /*
 //Datos del input//   
-const datosBcv = document.querySelectorById('bcv'); 
-const datosParalelo = document.querySelectorById('paralelo'); 
-const datosMonto = document.querySelectorById('monto');
-const seleccionDolar = document.querySelectorById('dolar');
-const seleccionBolivar = document.querySelectorById('bolivar');
-
-
 const formula = document.querySelector('#calculadora');
-const cambioMonedas = new Intl.NumberFormat ('es-VE', {style : 'currency', currency: 'VES'});
-formula.addEventListener('radio', (e) => {
+formula.addEventListener('submit', (e) => {
 e.preventDefault();
 
-if (seleccionDolar=) 
+if (seleccionDolar) 
     {e.target.monto.value / e.target.bcv.value
     const contenido =  element.innerHTML
     element.innerHTML = HTMLDivElement ('resultados')
@@ -44,28 +37,37 @@ if (seleccionDolar=)
                                     alert ('Lo siento tines resultados coherentes')
                                 }    
                             });
-
 */
+
 //Eventos//
 
 //Fuinciones para llamar los inputs//
 
-    const fomr = document.querySelector('#calculadora');
-    const cambioMoneda = new Intl.NumberFormat ('es-VE', {style : 'currency', currency: 'VES'});
+const fomr = document.querySelector('#calculadora');
+    const cambioMoneda = new Intl.NumberFormat (value = 'es-VE', {style : 'currency', currency: 'VES', maximumFractionDigits: 2 });
     fomr.addEventListener('submit', (e) => {
     e.preventDefault();
-    document.write ('el resultado es' + e.target.bcv.value * e.target.monto.value  );
-    document.write ('el resultado es' + e.target.paralelo.value * e.target.monto.value);
-    document.write ('el resultado es' +  e.target.monto.value / e.target.paralelo.value);
-    document.write ('el resultado es' + e.target.monto.value / e.target.bcv.value);
 
-});
+    
+    
+        const bolivar = document.querySelector ('#bolivar');
+        const dolar = document.querySelector ('#dolar');
 
-const envio = document.querySelector('#calculadora');
-    envio.addEventListener('radio', (e) => {
-    e.preventDefault();
+        let texto = document.querySelector('p')
+        const resultado =   0;
 
-});
+        const i = 
+
+                texto.innerHTML = ('el resultado es ' + e.target.bcv.value * e.target.monto.value );
+                texto.innerHTML = ('el resultado es ' + e.target.paralelo.value * e.target.monto.value);
+                texto.innerHTML = ('el resultado es ' +  e.target.monto.value / e.target.paralelo.value);
+                texto.innerHTML = ('el resultado es ' + e.target.monto.value / e.target.bcv.value);
+
+                
+
+            
+    });
+
 //Tabla de reseteo
 function reset () {
     
@@ -73,3 +75,25 @@ const bcv = calculadora[ 'bcv'].value;
 const monto = calculadora[ 'monto'].value;
 const paralelo = calculadora[ 'paralelo'].value;
 };
+
+
+
+/*
+const datos = { 
+    bcv: e.target.bcv.value,
+    monto: e.target.monto.value,
+    paralelo: e.target.paralelo.value,
+};
+
+const bcv = datos ['bcv' ];
+const monto = datos [ 'monto'];
+const paralelo = datos [ 'paralelo'];
+
+if (datos)  {'El primer dato es:' [ 'bcv'] * [ 'monto'];
+         'El segundo dato es:' [ 'paralelo'] * [ 'monto'] ;
+        'El tercer dato es:' [ 'bcv'] / [ 'monto'] ;
+        'El cuarto dato es:' [ 'paralelo'] / [ 'monto'];}
+
+        document.write ('datos')
+});
+*/

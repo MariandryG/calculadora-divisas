@@ -5,44 +5,56 @@ padding:0 ;
 }
 
 body{
-    height: 100vh; background: #9c9c9c; margin: auto;
+    height: 100vh;
+    background: #722F37; 
+    margin: auto;
 }
 
 
-
-.flex { flex-direction: column;
-    display: flex;
-justify-content: center;
-align-items: center;
-}
 
 .ui-contenido {
     width: 70%;
-    height: 30%;
     border-radius: 20px;
     border-color: black;
-    background: red ;
-    box-shadow: 0px 10px 15px -3px (0, 0, 0, 0.197);
+    background: #c53e4e;
     padding: 20px;
     margin: auto;
     align-items: center;
-    border-style: solid;
-    
-    
+    border-style: solid; 
 }
-h1 {margin-bottom: 10px;
+
+
+.ui-title {margin-bottom: 10px;
 font-family: Arial, Helvetica, sans-serif;
 text-transform: uppercase;
-user-select: none;text-align: center;padding: 60px;text-transform: uppercase;width: 95%;
+text-align: center;
+padding: 60px;
+text-transform: uppercase;
+width: 70%;
 max-width: 1000px;
-/* width: 1000px;*/
-margin:auto;}
+margin:auto;
+color:aliceblue}
+
+h2 {margin:auto;
+    padding: 20px;
+    text-transform: uppercase;
+    width: 95%;
+    max-width: 1000px;
+    color:aliceblue}
+
+    .resultados {margin: auto;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 60px;
+    margin: auto;}
+    
 
 #bcv {height: 50px;
     margin-bottom: 30px;
-    width: 43%;
+    width: 100%;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 5px;
     border-color: black;
     border-style: solid;
@@ -52,9 +64,9 @@ margin:auto;}
 }
 #paralelo {height: 50px;
     margin-bottom: 30px;
-    width: 43%;
+    width: 100%;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 5px;
     border-color: black;
     border-style: solid;
@@ -64,9 +76,9 @@ margin:auto;}
 }
 #monto {height: 50px;
     margin-bottom: 30px;
-    width: 43%;
+    width: 100%;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 5px;
     border-color: black;
     border-style: solid;
@@ -74,39 +86,32 @@ margin:auto;}
 }
 
 .eleccion {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     text-align: center;
     font-size: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
     border-color: black;
     border-style: solid;
-    background: #c9c7c7;
+    background: #fa8383;
     padding: 20px;
     width: 90%;
     max-width: 1000px;
-    /* width: 1000px;*/
     margin:auto;
 }
 .envio {height: 50px;
-    margin-bottom: 30px;
     width: 50%;
     text-align: center;
     font-size: 23px;
-    border-radius: 5px;
+    border-radius: 15px;
     border-color: black;
     border-style: solid;
     margin: auto;
     text-transform: uppercase;
-    background: #f39393;
+    background: #c53e4e;
     padding: 10px;
 }
     
     
-
-h2 {padding: 20px;text-transform: uppercase;width: 95%;
-    max-width: 1000px;
-    /* width: 1000px;*/
-    margin:auto;}
 
 .control {height: 50px;
     margin-bottom: 30px;
@@ -119,56 +124,53 @@ h2 {padding: 20px;text-transform: uppercase;width: 95%;
     margin: auto;
 }
 
-.ui-title {padding: 20px;text-transform: uppercase; text-align: center;}
 
 .contenedor {
     width: 90%;
     max-width: 1000px;
-    /* width: 1000px;*/
     margin:auto;
     padding: 10px;
 
 }
-label {width: 70%;
-    max-width: 1000px;
-    /* width: 1000px;*/
-    margin: auto;
 
-}
+
 #calculadora {
     height: 30%;
     border-radius: 20px;
     border-color: black;
-    background: #2271b3 ;
+    background: #c53e4e; ;
     box-shadow: 0px 10px 15px -3px (0, 0, 0, 0.197);
     padding: 20px;
     margin: auto;
     align-items: center;
     width: 90%;
     max-width: 1000px;
-    /* width: 1000px;*/
+
     
     
 }
-h2 {margin-bottom: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    user-select: none;text-align: center;padding: 60px;}
 
-    .resultados1 { margin: auto;
 
-    }
+    
     .reseteo {height: 50px;
-        margin-bottom: 30px;
         width: 50%;
         text-align: center;
         font-size: 20px;
-        border-radius: 5px;
+        border-radius: 15px;
         border-color: black;
         border-style: solid;
         margin: auto;
         text-transform: uppercase;
-        background: #f39393;
+        background: #c53e4e;;
         padding: 10px;}
 
+        .Respuestas { margin: auto ;
+            padding: 10px;
+            width:50% ;
+            text-transform: uppercase;}
+
+            p { color: aliceblue; 
+                text-align: center; font-size: 
+                30px; margin: auto;
+                padding: 20px;}
 {}

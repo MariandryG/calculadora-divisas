@@ -10,12 +10,28 @@ body{
     margin: auto;
 }
 
+h2 {margin:auto;
+    padding: 10px;
+    text-transform: uppercase;
+    width: 95%;
+    max-width: 1000px;
+    color:#FFFFFF}
+
+
+p { color: #FFFFFF; 
+    text-align: center;
+    font-size: 20px;
+    margin: auto;
+    padding:20px;
+    text-transform: uppercase;
+}
+
 
 
 .ui-contenido {
     width: 70%;
     border-radius: 20px;
-    border-color: black;
+    border-color: #000000;
     background: #c53e4e;
     padding: 20px;
     margin: auto;
@@ -25,29 +41,26 @@ body{
 
 
 .ui-title {margin-bottom: 10px;
-font-family: Arial, Helvetica, sans-serif;
-text-transform: uppercase;
-text-align: center;
-padding: 60px;
-text-transform: uppercase;
-width: 70%;
-max-width: 1000px;
-margin:auto;
-color:aliceblue}
-
-h2 {margin:auto;
-    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
-    width: 95%;
+    text-align: center;
+    padding: 60px;
+    text-transform: uppercase;
+    width: 60%;
     max-width: 1000px;
-    color:aliceblue}
+    margin:auto;
+    color:#FFFFFF;
+    font-size: 25px;
+}
 
-    .resultados {margin: auto;
-        font-family: Arial, Helvetica, sans-serif;
-        text-transform: uppercase;
-        text-align: center;
-        padding: 60px;
-    margin: auto;}
+
+.resultados {margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 60px;
+    margin: auto;
+}
     
 
 #bcv {height: 50px;
@@ -56,33 +69,31 @@ h2 {margin:auto;
     text-align: center;
     font-size: 15px;
     border-radius: 5px;
-    border-color: black;
+    border-color: #000000;
     border-style: solid;
     padding: 20px;
-
-
 }
+
+
 #paralelo {height: 50px;
     margin-bottom: 30px;
     width: 100%;
     text-align: center;
     font-size: 15px;
     border-radius: 5px;
-    border-color: black;
+    border-color: #000000;
     border-style: solid;
     align-content: center;
-
-
 }
+
 #monto {height: 50px;
     margin-bottom: 30px;
     width: 100%;
     text-align: center;
     font-size: 15px;
     border-radius: 5px;
-    border-color: black;
+    border-color: #000000;
     border-style: solid;
-
 }
 
 .eleccion {
@@ -90,20 +101,21 @@ h2 {margin:auto;
     text-align: center;
     font-size: 20px;
     border-radius: 15px;
-    border-color: black;
+    border-color: #000000;
     border-style: solid;
     background: #fa8383;
     padding: 20px;
-    width: 90%;
+    width: 60%;
     max-width: 1000px;
     margin:auto;
 }
+
 .envio {height: 50px;
-    width: 50%;
+    width: 30%;
     text-align: center;
     font-size: 23px;
     border-radius: 15px;
-    border-color: black;
+    border-color: #000000;
     border-style: solid;
     margin: auto;
     text-transform: uppercase;
@@ -111,66 +123,25 @@ h2 {margin:auto;
     padding: 10px;
 }
     
-    
-
-.control {height: 50px;
-    margin-bottom: 30px;
-    width: 43%;
-    text-align: center;
-    font-size: 20px;
-    border-radius: 5px;
-    border-color: black;
-    border-style: solid;
-    margin: auto;
-}
-
 
 .contenedor {
     width: 90%;
     max-width: 1000px;
     margin:auto;
     padding: 10px;
-
 }
 
-
-#calculadora {
-    height: 30%;
-    border-radius: 20px;
-    border-color: black;
-    background: #c53e4e; ;
-    box-shadow: 0px 10px 15px -3px (0, 0, 0, 0.197);
-    padding: 20px;
+.reseteo {height: 50px;
+    width: 30%;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 15px;
+    border-color: #000000;
+    border-style: solid;
     margin: auto;
-    align-items: center;
-    width: 90%;
-    max-width: 1000px;
-
-    
-    
-}
+    text-transform: uppercase;
+    background: #c53e4e;;
+    padding: 10px;
+    }
 
 
-    
-    .reseteo {height: 50px;
-        width: 50%;
-        text-align: center;
-        font-size: 20px;
-        border-radius: 15px;
-        border-color: black;
-        border-style: solid;
-        margin: auto;
-        text-transform: uppercase;
-        background: #c53e4e;;
-        padding: 10px;}
-
-        .Respuestas { margin: auto ;
-            padding: 10px;
-            width:50% ;
-            text-transform: uppercase;}
-
-            p { color: aliceblue; 
-                text-align: center; font-size: 
-                30px; margin: auto;
-                padding: 20px;}
-{}

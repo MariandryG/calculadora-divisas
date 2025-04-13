@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" type="image/x-icon" href="./descarga.ico">
-    <title>Calculadora de divisas</title>
+    <title>Calculadora de divisas MG</title>
 </head>
 <body> 
     <div class="contenedor">
@@ -13,12 +13,12 @@
         <div class="ui-contenido flex" >
             <h2>datos de entrada</h2>
             <form id="calculadora" action="#" method="post">
-                <input type="number" step="0.01"  class="control" name="bcv" id="bcv"  placeholder="Tasa BCV">
-                <input type="number" step="0.01"  class="control" name="paralelo" id="paralelo"  placeholder="Tasa paralelo">
-                <input type="number"  step="0.01" class="control" name="monto" id="monto"   placeholder="Monto a calcular">
+                <input type="number" step="0.01"  class="control" name="bcv" id="bcv"  placeholder="Tasa BCV" required>
+                <input type="number" step="0.01"  class="control" name="paralelo" id="paralelo"  placeholder="Tasa paralelo" required>
+                <input type="number"  step="0.01" class="control" name="monto" id="monto"   placeholder="Monto a calcular" required>
                 <div class="eleccion">
-                    <label id="dolar" name ='radio'>Base $</label> <input type="radio">
-                    <label id="bolivar" name ='radio'>Base BS</label><input type="radio">
+                    <label id="dolar" name ='radio'>Base $</label> <input type="radio" checked>
+                    <label id="bolivar" name ='radio'>Base BS</label><input type="radio" >
                 </div>
                 </div>
                 </div>
@@ -36,8 +36,7 @@
         <h2 class="resultados" id="resultados">Resultados</h2>
         <div>
         <p class="Respuestas"id="respuestas"> Resultados<p>
-    </div>
-    
+    </div>    
 </div>
 </div>
 <script src="./codigo.js"></script>

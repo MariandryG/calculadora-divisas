@@ -10,7 +10,7 @@ const fomr = document.querySelector('#calculadora');
         
         const cambioMoneda = new Intl.NumberFormat (value = 'es-VE', {style : 'currency', currency: 'VES',});
 
-        e.preventDefault();
+            e.preventDefault();
         
     
         const texto = document.querySelector('p')
@@ -39,44 +39,49 @@ const fomr = document.querySelector('#calculadora');
             diferenciaBolivar, 
             diferenciaUsd;   
 
-    if (selectedCurrency === 'dolar') {
-            
-        resultadoBcv = (bcv * monto).toFixed(2);
-        resultadoParalelo = (paralelo * monto).toFixed(2);
-        resultadoBcvParalelo = (resultadoBcv / paralelo).toFixed(2);
-        diferenciaBolivar = (resultadoParalelo -  resultadoBcv).toFixed(2);
-        diferenciaUsd = (diferenciaBolivar / paralelo).toFixed(2);  
+            if (selectedCurrency === 'dolar') {
+                    
+                resultadoBcv = (bcv * monto).toFixed(2);
+                resultadoParalelo = (paralelo * monto).toFixed(2);
+                resultadoBcvParalelo = (resultadoBcv / paralelo).toFixed(2);
+                diferenciaBolivar = (resultadoParalelo -  resultadoBcv).toFixed(2);
+                diferenciaUsd = (diferenciaBolivar / paralelo).toFixed(2);  
 
-            texto.innerHTML +=('<br> Total en Bolivares a BCV : ' + resultadoBcv);
-            texto.innerHTML +=('<br> Total en Bolivares a Paralelo: ' + resultadoParalelo);
-            texto.innerHTML +=('<br> Total Pagado: ' + resultadoBcvParalelo);
-            texto.innerHTML +=('<br> Diferencias en Bolivares: ' + diferenciaBolivar);
-            texto.innerHTML +=('<br> Diferencias en $: ' + diferenciaUsd); 
-    };
+                    texto.innerHTML +=('<br> Total en Bolivares a BCV : ' + resultadoBcv);
+                    texto.innerHTML +=('<br> Total en Bolivares a Paralelo: ' + resultadoParalelo);
+                    texto.innerHTML +=('<br> Total Pagado: ' + resultadoBcvParalelo);
+                    texto.innerHTML +=('<br> Diferencias en Bolivares: ' + diferenciaBolivar);
+                    texto.innerHTML +=('<br> Diferencias en $: ' + diferenciaUsd); 
+            };
 
-    if (selectedCurrency === 'bolivar') {
+        if (selectedCurrency === 'bolivar') {
 
-        resultadoBcv = (monto / bcv).toFixed(2) ;
-        resultadoParalelo = ( monto / paralelo ).toFixed(2);
-        diferenciaBolivar = (resultadoBcv - resultadoParalelo).toFixed(2);
-        diferenciaUsd = (diferenciaBolivar * paralelo).toFixed(2); 
-        resultadoBcvParalelo = (monto - diferenciaUsd).toFixed(2); 
+            resultadoBcv = (monto / bcv).toFixed(2) ;
+            resultadoParalelo = ( monto / paralelo ).toFixed(2);
+            diferenciaBolivar = (resultadoBcv - resultadoParalelo).toFixed(2);
+            diferenciaUsd = (diferenciaBolivar * paralelo).toFixed(2); 
+            resultadoBcvParalelo = (monto - diferenciaUsd).toFixed(2); 
 
-            texto.innerHTML +=('<br> Total en $ a BCV: ' + resultadoBcv);
-            texto.innerHTML +=('<br> Total en $ a Paralelo: ' + resultadoParalelo);
-            texto.innerHTML +=('<br> Total Pagado: ' + resultadoBcvParalelo);
-            texto.innerHTML +=('<br> Diferencias en Bolivares: ' + diferenciaUsd);
-            texto.innerHTML +=('<br> Diferencias en $: ' + diferenciaBolivar); 
-    };
+                texto.innerHTML +=('<br> Total en $ a BCV: ' + resultadoBcv);
+                texto.innerHTML +=('<br> Total en $ a Paralelo: ' + resultadoParalelo);
+                texto.innerHTML +=('<br> Total Pagado: ' + resultadoBcvParalelo);
+                texto.innerHTML +=('<br> Diferencias en Bolivares: ' + diferenciaUsd);
+                texto.innerHTML +=('<br> Diferencias en $: ' + diferenciaBolivar);
 
-});
+            };
+    
+    //Limpieza de inputs de forma manual
+    e.target.bcv.value = '';
+    e.target.monto.value = '';
+    e.target.paralelo.value = '';
+
+    });
 
 // Funcion para resetear//
 fomr.addEventListener('reset', (e) => {
 
     const texto = document.querySelector('p');
         texto.innerHTML = ''; 
-        //Limpia el contenido al resetar el formulario//
         
     });
 
@@ -86,4 +91,5 @@ function reset () {
     const bcv = calculadora[ 'bcv'].value;
     const monto = calculadora[ 'monto'].value;
     const paralelo = calculadora[ 'paralelo'].value;
+
         };

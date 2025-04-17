@@ -18,6 +18,8 @@ h2 {
     max-width: 1000px;
     color:#FFFFFF}
 
+    h3 {color:#FFFFFF;
+        font-size: 15px;}
 
 p { 
     color: #FFFFFF; 
@@ -26,7 +28,34 @@ p {
     margin: auto;
     padding:5px;
     text-transform: uppercase;
+    border-style: solid;
+    border-color: #FFFFFF;
+    width: 50%;
+    background: #e70620;
+    border-radius: 20px;
+    display: none; /* Escone el elemento por defecto */
+    border: 1px solid #FFFFFF;
+    border-collapse: collapse;
+    width: 50%;
 }
+
+p ::before {
+    content: "" ;
+    display: block;
+    border-top: 1px solid #FFFFFF;
+    margin: 10px, 0px;
+    }
+
+    p ::after {
+        content: "" ;
+    display: block;
+    border-bottom: 1px solid #FFFFFF;
+    margin: 10px, 0px;
+        
+        }
+    
+
+
 
 
 
@@ -101,7 +130,6 @@ p {
 }
 
 .eleccion {
-    margin-bottom: 40px;
     text-align: center;
     font-size: 20px;
     border-radius: 15px;
@@ -109,44 +137,23 @@ p {
     border-style: solid;
     background: #000000;
     padding: 20px;
-    width: 60%;
-    max-width: 1000px;
+    width: 100%;
     margin:auto;
     color: #FFFFFF;
 }
 
-.envio {height: 50px;
-    width: 30%;
+.envio {
     text-align: center;
     font-size: 23px;
-    border-radius: 15px;
-    border-color: #FFFFFF;
-    border-style: solid;
     margin: auto;
     text-transform: uppercase;
-    background: #e70620;
-    padding: 10px;
 }
     
 
-.contenedor {
-    width: 90%;
-    max-width: 1000px;
-    margin:auto;
-    padding: 10px;
-}
-
-.reseteo {height: 50px;
-    width: 30%;
-    text-align: center;
-    font-size: 23px;
-    border-radius: 15px;
-    border-color: #FFFFFF;
-    border-style: solid;
-    margin: auto;
-    text-transform: uppercase;
-    background: #e70620;
-    padding: 10px;
+    .contenedor {
+        width: 100%;
+        max-width: 1000px;
+        margin:auto;
+        padding: 10px;
     }
-
 

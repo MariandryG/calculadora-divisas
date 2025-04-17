@@ -13,32 +13,36 @@
         <div class="ui-contenido flex" >
             <h2>datos de entrada</h2>
             <form id="calculadora" action="#" method="post">
-                <input type="number" step="0.01"  class="control" name="bcv" id="bcv"  placeholder="Tasa BCV" required>
+                <input type="number" step="0.01"  class="control" name="bcv" id="bcv"  placeholder="Tasa BCV" autofocus required>
                 <input type="number" step="0.01"  class="control" name="paralelo" id="paralelo"  placeholder="Tasa paralelo" required>
                 <input type="number"  step="0.01" class="control" name="monto" id="monto"   placeholder="Monto a calcular" required>
                 <div class="eleccion">
                     <label id="dolar" name ='dolar'>Base $</label><input type="radio" id="dolar" name ='radio' value="dolar" checked>
                     <label id="bolivar" name ='bolivar'>Base BS</label><input type="radio" id="bolivar" name ='radio' value="bolivar" checked>
-                </div>
-                </div>
-                </div>
-                <div class="envio">
+                    <br>
+                    <div class="envio">
                     <input type="submit" value="calcular" placeholder ='calcular' id="calcular" name="submit">
-                    </div>
-                        <div class="reseteo">
                         <input type="reset" value="RESETEAR" id="reset" name="reset" >
                     </div>
+                </div>
+                </div>
+                </div>
                 </div>
             </form>
         </div>
     </div>
     <div id="respuestas">
-            <h2 class="resultados" id="resultados">Resultados</h2>
             <div>
-            <p class="respuestas"id="respuestas" name ="respuestas" > Resultados<p>
+                <th>
+            <p class="respuestas"id="respuestas" name ="respuestas" ><p>
+            </th>
         </div>  
     </div>  
 </div>
+</div>
+<div class="creditos">
+<h3>Created by: Mariandry Garcia :D </h3>
+><a href="https://www.instagram.com/mariandrygarcia/">Instagram @mariandrygarcia</a>
 </div>
 <script src="./codigo.js"></script>
 </body>

@@ -52,9 +52,9 @@ const fomr = document.querySelector('#calculadora');
                     
                 resultadoBcv = (bcv * monto).toFixed(2);
                 resultadoParalelo = (paralelo * monto).toFixed(2);
-                resultadoBcvParalelo = ((resultadoBcv * 100) / (paralelo * 100)).toFixed(2);
-                diferenciaBolivar = ((resultadoParalelo * 100) -  (resultadoBcv * 100)).toFixed(2);
-                diferenciaUsd = (diferenciaBolivar  / (paralelo * 100)).toFixed(2);  
+                resultadoBcvParalelo = (resultadoBcv  / paralelo).toFixed(2);
+                diferenciaBolivar = (resultadoParalelo - resultadoBcv).toFixed(2);
+                diferenciaUsd = (diferenciaBolivar  / paralelo).toFixed(2);  
 
                     texto.innerHTML +=('<br> Resultados:')
                     texto.innerHTML +=('<br> <hr> Total en Bolivares a BCV : ' + resultadoBcv);
@@ -66,18 +66,18 @@ const fomr = document.querySelector('#calculadora');
 
         if (selectedCurrency === 'bolivar') {
 
-            resultadoBcv = ((monto * 1000) / (bcv * 1000)).toFixed(2) ;
-            resultadoParalelo = ( (monto * 1000) / (paralelo * 1000)).toFixed(2);
-            diferenciaBolivar = (resultadoBcv - resultadoParalelo ).toFixed(2);
-            diferenciaUsd = (diferenciaBolivar  * paralelo).toFixed(2); 
-            resultadoBcvParalelo = (monto  - diferenciaUsd ).toFixed(2); 
+            resultadoBcv = (monto  / bcv) ;
+            resultadoParalelo = ( monto / paralelo);
+            diferenciaBolivar = (resultadoBcv - resultadoParalelo );
+            diferenciaUsd = (diferenciaBolivar  * paralelo); 
+            totalPagadoBS = (monto  - diferenciaUsd ); 
 
                 texto.innerHTML +=('<br> Resultados :')
-                texto.innerHTML +=('<br> <hr> Total en $ a BCV: ' + resultadoBcv);
-                texto.innerHTML +=('<br> <hr> Total en $ a Paralelo: ' + resultadoParalelo);
-                texto.innerHTML +=('<br> <hr> Total Pagado: ' + resultadoBcvParalelo);
-                texto.innerHTML +=('<br> <hr> Diferencias en Bolivares: ' + diferenciaUsd);
-                texto.innerHTML +=('<br> <hr> Diferencias en $: ' + diferenciaBolivar);
+                texto.innerHTML +=('<br> <hr> Total en $ a BCV: ' + resultadoBcv.toFixed(2));
+                texto.innerHTML +=('<br> <hr> Total en $ a Paralelo: ' + resultadoParalelo.toFixed(2));
+                texto.innerHTML +=('<br> <hr> Total Pagado: ' +  totalPagadoBS.toFixed(2));
+                texto.innerHTML +=('<br> <hr> Diferencias en Bolivares: ' + diferenciaUsd.toFixed(2));
+                texto.innerHTML +=('<br> <hr> Diferencias en $: ' + diferenciaBolivar.toFixed(2));
 
             };
     

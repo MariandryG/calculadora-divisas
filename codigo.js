@@ -1,10 +1,147 @@
 //Constantes generales//
-    const resultado3 = document.querySelector('#resultado'); 
-    const buttons = document.querySelector('#envio'); 
+const resultadoTexto = document.querySelector('p');
+const formatoVES = new Intl.NumberFormat('es-VE', {
+    style: 'currency',
+    currency: 'VES'
+    });
+
+const formatoUSD = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+        });
+    
+const bcvInput = document.querySelector('input[ name = "bcv"]');
+
+
+
+//Objeto selecionador de inputs
+const inputs = {
+    bcv: 'input[ name = "bcv"]',
+    monto: 'input[ name = "monto"]',
+    paralelo: 'input[ name = "paralelo"]'
+};
+
+//Funcion para obtener el valor de los inputs
+const getInputValue = (name) => parseFloat(fomr.querySelector(inputs[name]).value);
+
+//Funcion para limpiar los inputs
+const clearInputValue = (name) => {
+    fomr.querySelector(inputs[name]).value = '';
+};
+
+//Funcion para ocultar los resultados
+const toggleResultado = (mostrar) => {
+    resultadoTexto.style.display = mostrar ? 'block' : 'none';
+    resultadoTexto.innerHTML = ''; // Limpia el contenido al ocultar
+};
+
+//Funcion para mostrar los resultados en el parrafo 
+const mostrarResultados = (resultados) => {
+    resultadoTexto.innerHTML = ' <br> Resultados: <br> <hr> ';
+        
+        for (const key in resultados) {
+            const valor = resultados[key];
+            
+            let valorFormateado = valor;
+        
+            if (key.toLowerCase().includes('bolivar')) {
+                valorFormateado = formatoVES.format(valor);
+            } 
+            else if (
+                key.includes('$') ||
+                key.toLowerCase().includes('usd') ||
+                key.toLowerCase().includes('dolar')
+            ) {
+                valorFormateado = formatoUSD.format(valor);
+            }
+        
+            resultadoTexto.innerHTML += `<br><hr><strong>${key}:</strong> ${valorFormateado}`;
+            }
+        
+            console.log("Resultados mostrados:", resultadoTexto.innerHTML);
+        };
+    
+
+
+const fomr = document.querySelector('#calculadora');
+    fomr.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        toggleResultado(true); //Mostrar resultados al calcular
+
+        const bcv = getInputValue('bcv');
+        const monto = getInputValue('monto');
+        const paralelo = getInputValue('paralelo'); 
+        const selectedCurrency = document.querySelector('input[ name = "radio"]:checked')?.value;
+
+        if (monto <= 0){
+            resultadoTexto.innerHTML +='<br> Monto igual 0 ';
+            Object.keys(inputs).forEach(clearInputValue); // Limpiar todos los inputs
+            bcvInput.focus(); // Mantener el foco en BCV
+                return;
+            };
+
+            let resultados = {};
+
+            if (selectedCurrency === 'dolar') {
+                    
+                const resultadoBcv = (bcv * monto).toFixed(2);
+                const resultadoParalelo = (paralelo * monto).toFixed(2);
+                const totalPagadoUSD = (resultadoBcv  / paralelo).toFixed(2);
+                const diferenciaBolivar = (resultadoParalelo - resultadoBcv).toFixed(2);
+                const diferenciaUsd = (diferenciaBolivar  / paralelo).toFixed(2);
+
+                resultados = {
+                    'Total en bolivares a BCV': resultadoBcv,
+                    'total en bolivares a Paralelo': resultadoParalelo,
+                    'total pagado en $': totalPagadoUSD,
+                    'diferencia en Bolivares': diferenciaBolivar,
+                    'diferencia en $': diferenciaUsd
+                };
+            }
+            
+            else if (selectedCurrency === 'bolivar') {
+                const resultadoBcv = (monto  / bcv) ;
+                const resultadoParalelo = ( monto / paralelo);
+                const diferenciaBolivar = (resultadoBcv - resultadoParalelo );
+                const diferenciaUsd = (diferenciaBolivar  * paralelo); 
+                const totalPagadoBS = (monto  - diferenciaUsd ); 
+            
+
+            resultados = {
+                'Total en $ a BCV': resultadoBcv.toFixed(2),
+                'total en $ a Paralelo': resultadoParalelo.toFixed(2),
+                'total pagado bolivares': totalPagadoBS.toFixed(2), 
+                'diferencia en $': diferenciaBolivar.toFixed(2),
+                'diferencia en Bolivares': diferenciaUsd.toFixed(2)
+            };
+        }
+
+        mostrarResultados(resultados);
+        Object.keys(inputs).forEach(clearInputValue); // Limpiar todos los inputs despues de calcular
+            bcvInput.focus(); // Mantener el foco en BCV
+    });
+
+    fomr.addEventListener('reset', (e) => {
+
+    toggleResultado(false); //Ocultar los resultados al resetaer
+    Object.keys(inputs).forEach(clearInputValue); // Limpiar todos los inputs despues de resetear
+            bcvInput.focus(); // Mantener el foco en BCV
+    });
+
+
+
+
+
+
+
+
+
+
 
 
 //Fuinciones para llamar los inputs//
-
+/*
 const fomr = document.querySelector('#calculadora');
     fomr.addEventListener('submit', (e) => {
 
@@ -109,3 +246,4 @@ function reset () {
     const paralelo = calculadora[ 'paralelo'].value;
 
         };
+        */

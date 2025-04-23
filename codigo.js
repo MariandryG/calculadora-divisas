@@ -1,5 +1,6 @@
 //Constantes generales//
 const resultadoTexto = document.querySelector('p');
+
 const formatoVES = new Intl.NumberFormat('es-VE', {
     style: 'currency',
     currency: 'VES'
@@ -105,7 +106,7 @@ const fomr = document.querySelector('#calculadora');
                 const resultadoParalelo = ( monto / paralelo);
                 const diferenciaBolivar = (resultadoBcv - resultadoParalelo );
                 const diferenciaUsd = (diferenciaBolivar  * paralelo); 
-                const totalPagadoBS = (monto  - diferenciaUsd ); 
+                const totalPagadoBS = (monto - diferenciaUsd); 
             
 
             resultados = {

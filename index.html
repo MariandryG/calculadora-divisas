@@ -13,9 +13,9 @@
         <div class="ui-contenido flex" >
             <h2>datos de entrada</h2>
             <form id="calculadora" method="post">
-                <input type="number" step="0.01"  class="control" name="bcv" id="bcv"  placeholder="Tasa BCV" autofocus required>
-                <input type="number" step="0.01"  class="control" name="paralelo" id="paralelo"  placeholder="Tasa paralelo" required>
-                <input type="number"  step="0.01" class="control" name="monto" id="monto"   placeholder="Monto a calcular" required>
+                <input type="number" min="0" step="0.01"  class="control" name="bcv" id="bcv"  placeholder="Tasa BCV" autofocus required>
+                <input type="number" min="0" step="0.01"  class="control" name="paralelo" id="paralelo"  placeholder="Tasa paralelo" required>
+                <input type="number" min="0" step="0.01" class="control" name="monto" id="monto"   placeholder="Monto a calcular" required>
                 <div class="eleccion">
                     <label id="dolar" name ='dolar'>Base $</label><input type="radio" id="dolar" name ='radio' value="dolar" checked>
                     <label id="bolivar" name ='bolivar'>Base BS</label><input type="radio" id="bolivar" name ='radio' value="bolivar" checked>

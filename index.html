@@ -17,12 +17,15 @@
                 <input type="number" min="0" step="0.01"  class="control" name="paralelo" id="paralelo"  placeholder="Tasa paralelo" required>
                 <input type="number" min="0" step="0.01" class="control" name="monto" id="monto"   placeholder="Monto a calcular" required>
                 <div class="eleccion">
-                    <label id="dolar" name ='dolar'>Base $</label><input type="radio" id="dolar" name ='radio' value="dolar" checked>
+                    <div class="opcion">
+                    <label id="dolar" name ='dolar'>Base $</label><input type="radio" id="dolar" name ='radio' value="dolar" checked></div>
+                    <div class="opcion">
                     <label id="bolivar" name ='bolivar'>Base BS</label><input type="radio" id="bolivar" name ='radio' value="bolivar" checked>
+                    </div>
                     <br>
                     <div class="envio">
-                    <input type="submit" value="calcular" placeholder ='calcular' id="calcular" name="submit">
-                        <input type="reset" value="RESETEAR" id="reset" name="reset" >
+                    <input type="submit" value="calcular"  id="calcular" name="submit">
+                    <input type="reset" value="RESETEAR" id="reset" name="reset" >
                     </div>
                 </div>
                 </div>
@@ -33,6 +36,7 @@
     </div>
     <div id="respuestas">
             <div>
+                <hr>
                 <th>
             <p class="respuestas"id="respuestas" name ="respuestas" ><p>
             </th>
@@ -40,11 +44,31 @@
     </div>  
 </div>
 </div>
-<div class="creditos">
-<h3>Created by: Mariandry Garcia :D </h3>
-<a href="https://www.instagram.com/mariandrygarcia/" target="_blank">Instagram @mariandrygarcia</a> <br>
-<a href="https://github.com/MariandryG" target="_blank">Perfil de Github</a>
-</div>
+<hr>
+    <h3>Created by: Mariandry Garcia 🤓 </h3>
+        <div class="sociales"></div>
+        <img
+            src="./imagenes/imagen_mas_clara.jpg"
+            alt="MHenriquez"
+            loading="lazy"
+            class="socicon"/></a>
+            <a href="https://www.linkedin.com/in/mariandry-garcia-76b708344/" target="_blank">
+                <img 
+                    src="/imagenes/linkedin.png"
+                    alt="Linkedin"
+                    loading="lazy"
+                    class="socicon"/></a>
+            <a href="https://github.com/MariandryG" target="_blank">
+                <img 
+                    src="/imagenes/git.png" 
+                    alt="Github" 
+                    class="socicon"/></a>
+            <a href="https://mariandryg.github.io/" target="_blank">
+                <img 
+                    src="/imagenes/portafolio.png" 
+                    alt="Portafolio" 
+                    class="socicon"/></a>
+        </div>
 <script src="./codigo.js"></script>
 </body>
 </html>

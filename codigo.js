@@ -1,19 +1,116 @@
 //Constantes generales//
 const resultadoTexto = document.querySelector('p');
-
-const formatoVES = new Intl.NumberFormat('es-VE', {
-    style: 'currency',
-    currency: 'VES'
-    });
+const form = document.querySelector('#calculadora');
+const bcvInput = document.querySelector('input[ name = "bcv"]');
+const paraleloInput = document.querySelector('input[ name = "paralelo"]');
+const montoInput = document.querySelector('input[ name = "monto"]');
 
 const formatoUSD = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
         });
+const formatoVES = new Intl.NumberFormat('es-VE', {
+style: 'currency',
+currency: 'VES'
+            });
+
+montoInput.focus();
+
+// Tiempo máximo para considerar válida la caché (ej: 5 minutos)
+const TIEMPO_CACHE = 5 * 60 * 1000; // 5 minutos en milisegundos
+
+// Función para obtener la tasa BCV
+function obtenerTasaBCV() {
+    const cachedData = localStorage.getItem('bcvData');
+    const cachedTime = localStorage.getItem('bcvTime');
+    const ahora = Date.now();
+
+        if (cachedData && cachedTime && (ahora - cachedTime) < TIEMPO_CACHE) {
+            const tasaBCV = JSON.parse(cachedData);
+                bcvInput.value = tasaBCV.toFixed(2);
+                console.log('Usando tasa BCV desde caché.');
+                    return;
+                }
+            // Obtener tasas automáticamente
+            fetch('https://ve.dolarapi.com/v1/dolares/oficial')
+                .then(res => {
+                    if (!res.ok) throw new Error('Error en API principal');
+                        return res.json();
+                    })
+                .then(data => {
+                    const tasaBCV = data.promedio;
+                    bcvInput.value = tasaBCV.toFixed(2); 
+                    localStorage.setItem('bcvData', JSON.stringify(tasaBCV));
+                    localStorage.setItem('bcvTime', Date.now());
+                    console.log('Tasa BCV obtenida del servidor.')
+                })
+                .catch(error => {
+                    console.error('Error al obtener la tasa oficial:', error);
+                            // Intentar otra API de respaldo
+                        fetch('https://api.fixer.io/latest?access_key=TU_API_KEY&base=USD&symbols=VES')
+                            .then(res => {
+                                if (!res.ok) throw new Error('Error en API de respaldo');
+                                    return res.json();})
+                            .then(data => {
+                                bcvInput.value = data.rates.VES.toFixed(2);
+                                localStorage.setItem('bcvData', JSON.stringify(data.rates.VES));
+                                localStorage.setItem('bcvTime', Date.now());
+                                console.log('Tasa BCV obtenida del respaldo y almacenada.');
+                            })
+                        .catch(error => {
+                            console.error('Error también en API de respaldo:', error);
+                            resultadoTexto.textContent = 'No se pudo obtener ninguna tasa.';
+                        });
+                    }
+                )};
+                
     
-const bcvInput = document.querySelector('input[ name = "bcv"]');
+// Función para obtener la tasa Paralelo
+function obtenerTasaParalelo() {
+    const cachedData = localStorage.getItem('paraleloData');
+    const cachedTime = localStorage.getItem('paraleloTime');
+    const ahora = Date.now();
 
+        if (cachedData && cachedTime && (ahora - cachedTime) < TIEMPO_CACHE) {
+            const tasaParalelo = JSON.parse(cachedData);
+                paraleloInput.value = tasaParalelo.toFixed(2);
+                console.log('Usando tasa Paralelo desde caché.');
+                    return;
+                }
+            fetch('https://ve.dolarapi.com/v1/dolares/paralelo')
+                .then(res => {
+                if (!res.ok) throw new Error('Error en API principal');
+                    return res.json();
+                })    
+                .then(data => {
+                const tasaParalelo = data.promedio;
+                    paraleloInput.value = tasaParalelo; 
+                    localStorage.setItem('paraleloData', JSON.stringify(tasaParalelo));
+                    localStorage.setItem('paraleloTime', Date.now());
+                    console.log('Tasa Paralelo obtenida del servidor.');
+                })
+                .catch(error => {
+                    console.error('Error en la api principal:', error);
+                    fetch('https://pydolarve.org/')
+                    .then(res => {
+                        if (!res.ok) throw new Error('Error en API de respaldo');
+                            return res.json();})
+                    .then(data => {
+                        paraleloInput.value = data.rates.VES.toFixed(2);
+                        localStorage.setItem('bcvData', JSON.stringify(data.rates.VES));
+                        localStorage.setItem('bcvTime', Date.now());
+                        console.log('Tasa BCV obtenida del respaldo y almacenada.');
+                    })
+                .catch(error => {
+                    console.error('Error también en API de respaldo:', error);
+                    resultadoTexto.textContent = 'No se pudo obtener ninguna tasa.';
+                });
+            }) 
+        }
 
+// Llamamos las funciones al cargar la página
+obtenerTasaBCV();
+obtenerTasaParalelo();    
 
 //Objeto selecionador de inputs
 const inputs = {
@@ -23,11 +120,11 @@ const inputs = {
 };
 
 //Funcion para obtener el valor de los inputs
-const getInputValue = (name) => parseFloat(fomr.querySelector(inputs[name]).value);
+const getInputValue = (name) => parseFloat(form.querySelector(inputs[name]).value);
 
 //Funcion para limpiar los inputs
 const clearInputValue = (name) => {
-    fomr.querySelector(inputs[name]).value = '';
+    form.querySelector('#monto').value = '';
 };
 
 //Funcion para ocultar los resultados
@@ -64,8 +161,8 @@ const mostrarResultados = (resultados) => {
     
 
 
-const fomr = document.querySelector('#calculadora');
-    fomr.addEventListener('submit', (e) => {
+
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         toggleResultado(true); //Mostrar resultados al calcular
@@ -77,8 +174,8 @@ const fomr = document.querySelector('#calculadora');
 
         if (monto <= 0){
             resultadoTexto.innerHTML +='<br> Monto igual 0 ';
-            Object.keys(inputs).forEach(clearInputValue); // Limpiar todos los inputs
-            bcvInput.focus(); // Mantener el foco en BCV
+            Object.keys(inputs).forEach(clearInputValue); // Limpia el input montos
+            montoInput.focus(); // Mantener el foco en monto
                 return;
             };
 
@@ -120,14 +217,14 @@ const fomr = document.querySelector('#calculadora');
 
         mostrarResultados(resultados);
         Object.keys(inputs).forEach(clearInputValue); // Limpiar todos los inputs despues de calcular
-            bcvInput.focus(); // Mantener el foco en BCV
+            montoInput.focus(); // Mantener el foco en monto
     });
 
-    fomr.addEventListener('reset', (e) => {
-
-    toggleResultado(false); //Ocultar los resultados al resetaer
-    Object.keys(inputs).forEach(clearInputValue); // Limpiar todos los inputs despues de resetear
-            bcvInput.focus(); // Mantener el foco en BCV
+    form.addEventListener('reset', (e) => {
+        e.preventDefault();
+            toggleResultado(false); //Ocultar los resultados al resetaer
+            Object.keys(inputs).forEach(clearInputValue); // Limpia el input monto
+                    montoInput.focus(); // Mantener el foco en monto
     });
 
 

@@ -182,15 +182,15 @@ a {
 
     .sociales{
         float:right;
+        text-align: right;
     }
     
     .socicon {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 1.6rem;
+        height: 1.6rem;
         border-radius: 10%;
-        margin: 2%;
-        float:right;
         object-fit: contain;
+        display: inline-block;
                 }
 
 

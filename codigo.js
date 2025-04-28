@@ -17,20 +17,23 @@ currency: 'VES'
 montoInput.focus();
 
 // Tiempo máximo para considerar válida la caché (ej: 5 minutos)
-const TIEMPO_CACHE = 5 * 60 * 1000; // 5 minutos en milisegundos
+const TIEMPO_MAX_CACHE = 5 * 60 * 1000; // 5 minutos en milisegundos
+
+let tasaBCV = null;
+let tasaBCVTime = null;
+let tasaParalelo = null;
+let tasaParaleloTime = null;
 
 // Función para obtener la tasa BCV
 function obtenerTasaBCV() {
-    const cachedData = localStorage.getItem('bcvData');
-    const cachedTime = localStorage.getItem('bcvTime');
     const ahora = Date.now();
 
-        if (cachedData && cachedTime && (ahora - cachedTime) < TIEMPO_CACHE) {
-            const tasaBCV = JSON.parse(cachedData);
-                bcvInput.value = tasaBCV.toFixed(2);
-                console.log('Usando tasa BCV desde caché.');
-                    return;
+        if (tasaBCV !== null && (ahora - tasaBCVTime) < TIEMPO_MAX_CACHE) {
+            bcvInput.value = tasaBCV.toFixed(2);
+            console.log('Usando tasa BCV desde memoria.');
+                return;
                 }
+
             // Obtener tasas automáticamente
             fetch('https://ve.dolarapi.com/v1/dolares/oficial')
                 .then(res => {
@@ -38,10 +41,9 @@ function obtenerTasaBCV() {
                         return res.json();
                     })
                 .then(data => {
-                    const tasaBCV = data.promedio;
+                    tasaBCV = data.promedio;
+                    tasaBCVTime = Date.now();//Guarda la hora
                     bcvInput.value = tasaBCV.toFixed(2); 
-                    localStorage.setItem('bcvData', JSON.stringify(tasaBCV));
-                    localStorage.setItem('bcvTime', Date.now());
                     console.log('Tasa BCV obtenida del servidor.')
                 })
                 .catch(error => {
@@ -52,9 +54,10 @@ function obtenerTasaBCV() {
                                 if (!res.ok) throw new Error('Error en API de respaldo');
                                     return res.json();})
                             .then(data => {
-                                bcvInput.value = data.rates.VES.toFixed(2);
-                                localStorage.setItem('bcvData', JSON.stringify(data.rates.VES));
-                                localStorage.setItem('bcvTime', Date.now());
+                                tasaBCV = data.promedio;
+                                tasaBCVTime = Date.now();//Guarda la hora
+                                bcvInput.value = tasaBCV.toFixed(2); 
+                                console.log('Tasa BCV obtenida del servidor.');
                                 console.log('Tasa BCV obtenida del respaldo y almacenada.');
                             })
                         .catch(error => {
@@ -67,14 +70,11 @@ function obtenerTasaBCV() {
     
 // Función para obtener la tasa Paralelo
 function obtenerTasaParalelo() {
-    const cachedData = localStorage.getItem('paraleloData');
-    const cachedTime = localStorage.getItem('paraleloTime');
     const ahora = Date.now();
 
-        if (cachedData && cachedTime && (ahora - cachedTime) < TIEMPO_CACHE) {
-            const tasaParalelo = JSON.parse(cachedData);
+        if (tasaParalelo !== null && (ahora - tasaParaleloTime) < TIEMPO_MAX_CACHE) {
                 paraleloInput.value = tasaParalelo.toFixed(2);
-                console.log('Usando tasa Paralelo desde caché.');
+                console.log('Usando tasa Paralelo desde memoria.');
                     return;
                 }
             fetch('https://ve.dolarapi.com/v1/dolares/paralelo')
@@ -83,11 +83,10 @@ function obtenerTasaParalelo() {
                     return res.json();
                 })    
                 .then(data => {
-                const tasaParalelo = data.promedio;
-                    paraleloInput.value = tasaParalelo; 
-                    localStorage.setItem('paraleloData', JSON.stringify(tasaParalelo));
-                    localStorage.setItem('paraleloTime', Date.now());
-                    console.log('Tasa Paralelo obtenida del servidor.');
+                    tasaParalelo = data.promedio;
+                    tasaParaleloTime = Date.now();
+                    paraleloInput.value = tasaParalelo.toFixed(2); 
+                    console.log('Tasa Paralelo actualizada del servidor.');
                 })
                 .catch(error => {
                     console.error('Error en la api principal:', error);
@@ -96,10 +95,10 @@ function obtenerTasaParalelo() {
                         if (!res.ok) throw new Error('Error en API de respaldo');
                             return res.json();})
                     .then(data => {
-                        paraleloInput.value = data.rates.VES.toFixed(2);
-                        localStorage.setItem('bcvData', JSON.stringify(data.rates.VES));
-                        localStorage.setItem('bcvTime', Date.now());
-                        console.log('Tasa BCV obtenida del respaldo y almacenada.');
+                        tasaParalelo = data.promedio;
+                        tasaParaleloTime = Date.now();
+                        paraleloInput.value = tasaParalelo.toFixed(2); 
+                        console.log('Tasa Paralelo actualizada del servidor.');
                     })
                 .catch(error => {
                     console.error('Error también en API de respaldo:', error);
@@ -111,6 +110,11 @@ function obtenerTasaParalelo() {
 // Llamamos las funciones al cargar la página
 obtenerTasaBCV();
 obtenerTasaParalelo();    
+// Y además actualizamos cada 5 minutos
+setInterval(() => {
+    obtenerTasaBCV();
+    obtenerTasaParalelo();
+}, 5 * 60 * 1000); // 5 minutos en milisegundos
 
 //Objeto selecionador de inputs
 const inputs = {
